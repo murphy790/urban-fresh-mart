@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from "react";
+import ShoppingList from "./components/ShoppingList";
+import itemData from "./data/items";
 
 function App() {
+
+  const [isOn, setIsOn] = useState(false)
+  function handleClick(){
+    setIsOn( !isOn)
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className={isOn ? "App dark" : "App light"} >
+      <header>
+        <h2>Urban Fresh Mart</h2>
+        <button onClick={handleClick}>{isOn? "Light Mode" : "Dark Mode"}</button>
       </header>
+      <ShoppingList items={itemData} />
     </div>
   );
 }
